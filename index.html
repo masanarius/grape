@@ -105,73 +105,41 @@
         <tr>
           <th>アクション</th>
           <th>操作</th>
+          <th>結果</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>
-            チャンネルノードを作る<br>
-            Create a Channel Node
-          </td>
-          <td>
-            画面中央下の【⊕ボタン】をクリック<br>
-            Click the ⊕ button at the bottom center of the screen
-          </td>
+          <td>チャンネルノードを作る</td>
+          <td>画面中央下の【⊕ボタン】をクリック</td>
+          <td>画面中央のレーンに番号付きのチャンネルノードが出現</td>
         </tr>
         <tr>
-          <td>
-            チャンネルに参加／離脱する<br>
-            Join/Leave a Channel
-          </td>
-          <td>
-            【チャンネルノード】をダブルクリック<br>
-            Double-click the Channel Node
-          </td>
+          <td>チャンネルに参加／離脱する</td>
+          <td>【チャンネルノード】をダブルクリック</td>
+          <td>半透明のエッジが自身のユーザノードとチャンネルノードを接続．</td>
         </tr>
         <tr>
-          <td>
-            チャンネルへの参与の程度を上げる／下げる<br>
-            Increase/Decrease the Degree of Participation in the Channel
-          </td>
-          <td>
-            【チャンネルノード】を選択した状態（黄色いハイライトリングがある状態）でホイール／トラックパッドを操作<br>
-            Operate the wheel/trackpad while the Channel Node is selected (indicated by a yellow highlight ring)
-          </td>
+          <td>チャンネルへの参与の程度を上げる／下げる</td>
+          <td>【チャンネルノード】を選択した状態（黄色いハイライトリングがある状態）でホイール／トラックパッドを操作</td>
+          <td>エッジ幅が太くなったり，細くなったりする．</td>
         </tr>
         <tr>
-          <td>
-            メインチャンネルとして登録／解除する<br>
-            Register/Unregister as the Main Channel
-          </td>
-          <td>
-            参加状態の【チャンネルノード】を Ctrl/Cmd + ダブルクリック もしくは 右ダブルクリック<br>
-            Ctrl/Cmd + double-click or right double-click the participating Channel Node
-          </td>
+          <td>メインチャンネルとして登録／解除する</td>
+          <td>参加状態の【チャンネルノード】を Ctrl/Cmd + ダブルクリック もしくは 右ダブルクリック</td>
+          <td>エッジの色が不透明になり，ユーザノードが該当チャンネルの直下に移動する．なおメインチャンネルが未登録のときは，最も太いエッジで接続されたチャンネルの直下に移動する．</td>
         </tr>
         <tr>
-          <td>
-            チャンネルノードの位置を整理する<br>
-            Organize the Position of Channel Nodes
-          </td>
-          <td>
-            【チャンネルノード】をドラッグ＆ドロップ．もしくは画面右下の【…ボタン:X座標順】or【123ボタン:番号順】をクリック<br>
-            Drag and drop the Channel Node, or click the 【…Button: X-coordinate order】 or 【123 Button: Number order】 at
-            the bottom right of the screen
-          </td>
+          <td>チャンネルノードの位置を整理する</td>
+          <td>【チャンネルノード】をドラッグ＆ドロップ．もしくは画面右下の【…ボタン:X座標順】or【123ボタン:番号順】をクリック．</td>
+          <td>画面上のノードが整頓される．ノードの位置はユーザ間で同期していない．</td>
         </tr>
         <tr>
-          <td>
-            表示する名前を変える<br>
-            Change the Display Name
-          </td>
-          <td>
-            右上の【ペンボタン】を押して編集．日本語不可．氏名を半角スペースで区切るとユーザノードにイニシャルを表示<br>
-            Press the 【Pen Button】 at the top right to edit. Separate first and last names with
-            a space to display initials on the User Node
-          </td>
+          <td>表示する名前を変える</td>
+          <td>右上の【ペンボタン】を押して編集．日本語不可．</td>
+          <td>ユーザノードのラベルが更新され，半角スペースで区切られたイニシャルを表示する．</td>
         </tr>
       </tbody>
-
     </table>
   </div>
 
@@ -246,19 +214,18 @@
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // ボタンとテーブルコンテナを取得
     const toggleButton = document.getElementById('toggle-button');
     const tableContainer = document.getElementById('table-container');
 
+    // 初期状態を明示的に設定
+    tableContainer.style.display = 'none'; // テーブル非表示
+    toggleButton.textContent = '?'; // ボタンの初期表示
+
     // ボタンクリック時の処理
     toggleButton.addEventListener('click', () => {
-      if (tableContainer.style.display === 'none') {
-        tableContainer.style.display = 'block';
-        toggleButton.textContent = '×';
-      } else {
-        tableContainer.style.display = 'none';
-        toggleButton.textContent = '?';
-      }
+      const isHidden = tableContainer.style.display === 'none';
+      tableContainer.style.display = isHidden ? 'block' : 'none'; // 表示切り替え
+      toggleButton.textContent = isHidden ? '×' : '?'; // ボタンテキスト更新
     });
   </script>
 </body>
