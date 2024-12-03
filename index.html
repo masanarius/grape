@@ -36,50 +36,6 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
-
-    #toggle-button {
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      width: 40px;
-      height: 40px;
-      background-color: #23232300;
-      color: white;
-      border: 0px solid #ffffff;
-      font-size: large;
-      /* 枠線を追加 */
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 1000;
-    }
-
-    #table-container {
-      display: none;
-      position: fixed;
-      bottom: 50px;
-      left: 10px;
-      background-color: white;
-      border: 1px solid #ccc;
-      padding: 10px;
-      border-radius: 5px;
-      z-index: 999;
-    }
-
-    table {
-      border-collapse: collapse;
-      width: auto;
-    }
-
-    table th,
-    table td {
-      border: 1px solid #ccc;
-      padding: 5px;
-      text-align: left;
-    }
-
-    table th {
-      background-color: #f4f4f4;
-    }
   </style>
 </head>
 
@@ -93,54 +49,6 @@
       </div>
     </div>
     <div id="unity-warning"> </div>
-  </div>
-
-  <!-- 表示切り替えボタン -->
-  <button id="toggle-button">?</button>
-
-  <!-- 表コンテナ -->
-  <div id="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>アクション</th>
-          <th>操作</th>
-          <th>結果</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>チャンネルノードを作る</td>
-          <td>画面中央下の【⊕ボタン】をクリック</td>
-          <td>通し番号付きのチャンネルノードが出現</td>
-        </tr>
-        <tr>
-          <td>チャンネルに参加／離脱する</td>
-          <td>【チャンネルノード】をダブルクリック</td>
-          <td>半透明のエッジがユーザノードとチャンネルノードを接続</td>
-        </tr>
-        <tr>
-          <td>参与の程度を上げる／下げる</td>
-          <td>1. 【チャンネルノード】をクリック<br>2. マウスホイール／タッチパッドをスクロール</td>
-          <td>1. 黄色のハイライトリングが出現<br>2. エッジの線幅が変化</td>
-        </tr>
-        <tr>
-          <td>マイクをON／OFFにする</td>
-          <td>【チャンネルノード】を右クリック<br>(もしくはCtrl + クリック)</td>
-          <td>緑色のハイライトリングが出現し，<br>エッジアニメーション方向が反転</td>
-        </tr>
-        <tr>
-          <td>メインチャンネルとして登録／解除する</td>
-          <td>参加状態の【チャンネルノード】を Ctrl/Cmd + ダブルクリック<br>(Windowsのみ右ダブルクリックも可)</td>
-          <td>ユーザノードとエッジが不透明に色付き，<br>ユーザノードが該当チャンネルの直下に移動する</td>
-        </tr>
-        <tr>
-          <td>表示する名前を変える</td>
-          <td>右上の【ペンボタン】を押して編集（日本語不可）</td>
-          <td>ユーザノードのラベルが更新される</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 
   <script>
@@ -213,20 +121,6 @@
     });
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
-    const toggleButton = document.getElementById('toggle-button');
-    const tableContainer = document.getElementById('table-container');
-
-    // 初期状態を明示的に設定
-    tableContainer.style.display = 'none'; // テーブル非表示
-    toggleButton.textContent = '?'; // ボタンの初期表示
-
-    // ボタンクリック時の処理
-    toggleButton.addEventListener('click', () => {
-      const isHidden = tableContainer.style.display === 'none';
-      tableContainer.style.display = isHidden ? 'block' : 'none'; // 表示切り替え
-      toggleButton.textContent = isHidden ? '×' : '?'; // ボタンテキスト更新
-    });
   </script>
 </body>
 
